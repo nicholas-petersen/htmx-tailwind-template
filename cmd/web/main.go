@@ -21,6 +21,7 @@ func main() {
 		Handler: mux,
 	}
 
+	log.Printf("starting server on :%d", port)
 	err := srv.ListenAndServe()
 	log.Fatalf("Failed to ListenAndServe: %d", err)
 }
