@@ -32,7 +32,9 @@ tailwindcss.init:
 	@echo "$$tailwind_config" > tailwind.config.js
 
 tailwindcss:
-	@./tailwindcss -i web/main.css -o web/static/css/style.css
+	./tailwindcss -i web/main.css -o web/static/css/style.css
 
 tailwindcss.watch:
 	./tailwindcss -i web/main.css -o web/static/css/style.css --watch
+
+.PHONY: tailwindcss
