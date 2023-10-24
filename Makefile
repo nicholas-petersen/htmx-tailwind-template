@@ -17,7 +17,7 @@ endef
 export tailwind_config
 
 run:
-	@go run cmd/web/main.go
+	@go run cmd/web/*.go
 
 htmx.install:
 	@wget -q https://unpkg.com/htmx.org/dist/htmx.min.js -O web/static/js/htmx.min.js
