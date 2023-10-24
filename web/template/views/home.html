@@ -1,3 +1,5 @@
 {{define "main"}}
-<p>This is the home view</p>
+  <!-- <button hx-get="/winelist" hx-target="#wine-search" hx-swap="innerHTML" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">Wine list</button> -->
+  <div hx-get="/winelist" hx-target="#wine-search" hx-swap="innerHTML" hx-trigger="every 1s"></div>
+  <div class="m-2" id="wine-search"></div>
 {{end}}
