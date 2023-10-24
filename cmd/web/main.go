@@ -14,7 +14,7 @@ func main() {
 	mux := http.NewServeMux()
 	mux.Handle("/static/", http.StripPrefix("/static", staticFiles))
 	mux.HandleFunc("/", home)
-	mux.HandleFunc("/wine", wine)
+	mux.HandleFunc("/winelist", winelist)
 
 	srv := &http.Server{
 		Addr:    fmt.Sprintf(":%d", port),
@@ -30,7 +30,16 @@ func home(w http.ResponseWriter, r *http.Request) {
 	files := []string{
 		"./web/template/base.html",
 		"./web/template/partials/nav.html",
+		"./web/template/partials/table.html",
 		"./web/template/views/home.html",
+	}
+
+	data := struct {
+		Header []string
+		Rows   []wine
+	}{
+		Header: []string{"Country", "Name", "Price", "Year"},
+		Rows:   fetchWines(),
 	}
 
 	tmpl, err := template.ParseFiles(files...)
@@ -39,29 +48,23 @@ func home(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 	}
 
-	err = tmpl.ExecuteTemplate(w, "base", nil)
+	err = tmpl.ExecuteTemplate(w, "base", data)
 	if err != nil {
 		log.Print(err.Error())
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 	}
 }
 
-func wine(w http.ResponseWriter, r *http.Request) {
-	files := []string{
-		"./web/template/base.html",
-		"./web/template/partials/nav.html",
-		"./web/template/views/wine.html",
+func winelist(w http.ResponseWriter, r *http.Request) {
+	data := struct {
+		Header []string
+		Rows   []wine
+	}{
+		Header: []string{"Country", "Name", "Price", "Year"},
+		Rows:   fetchWines(),
 	}
 
-	tmpl, err := template.ParseFiles(files...)
-	if err != nil {
-		log.Print(err.Error())
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-	}
+	tmpl, _ := template.ParseFiles("./web/template/partials/table.html")
 
-	err = tmpl.ExecuteTemplate(w, "base", nil)
-	if err != nil {
-		log.Print(err.Error())
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-	}
+	tmpl.Execute(w, data)
 }
