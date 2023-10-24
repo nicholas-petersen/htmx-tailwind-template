@@ -534,10 +534,32 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.m-2 {
+  margin: 0.5rem;
+}
+
 .m-4 {
   margin: 1rem;
 }
 
 .mb-4 {
   margin-bottom: 1rem;
+}
+
+.table {
+  display: table;
+}
+
+.border-solid {
+  border-style: solid;
+}
+
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
