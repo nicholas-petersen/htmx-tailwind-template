@@ -19,6 +19,9 @@ export tailwind_config
 run:
 	@go run cmd/web/main.go
 
+htmx.install:
+	@wget -q https://unpkg.com/htmx.org/dist/htmx.min.js -O web/static/js/htmx.min.js
+
 tailwindcss.install: 
 	curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-macos-arm64
 	chmod +x tailwindcss-macos-arm64
