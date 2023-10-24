@@ -34,5 +34,5 @@ tailwindcss.init:
 tailwindcss:
 	@./tailwindcss -i web/main.css -o web/static/css/style.css
 
-tailwindcss.watch: tailwindcss
+tailwindcss.watch:
 	./tailwindcss -i web/main.css -o web/static/css/style.css --watch
